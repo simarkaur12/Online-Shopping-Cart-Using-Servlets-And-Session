@@ -46,13 +46,13 @@ public class ShowCart extends HttpServlet {
 
 	private void ShowCArt(PrintWriter out, String name) {
 		HashMap<String, ArrayList<Item>> shoppingCart = new ShoppingUserDetails().getShoppingCart();
-		out.println("<font size='4' color='blue'>Your Selected Items:</font><br>");
+		out.println("<font size='4' color='green'>Your Selected Items:</font><br>");
 		if(shoppingCart.containsKey(name)){
 			for(Item item : shoppingCart.get(name)){
 				out.println("<br>"+item.getName()+", Cost="+item.getCost());
 			}
 		}
-		out.println("<br><br><br><font color='blue'>If you don't want to purchase some item, Remove some items from cart:-<br><br></font> ");
+		out.println("<br><br><br><font color='green'>If you don't want to purchase some item, Remove some items from cart:-<br><br></font> ");
 		out.println("<form action='FetchUserSelectedItem' method='post'>"+ "<input type='submit' value='Delete from Cart'>"+ "</form>");
 	}
 

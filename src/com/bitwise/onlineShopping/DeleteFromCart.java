@@ -36,23 +36,24 @@ public class DeleteFromCart extends HttpServlet {
 
 		String name= (String) ssn.getAttribute("name");
 		if(name==null){
-			out.println("<font color='red'>You are logged out.Login Again</font>");
+			out.println("<font color='red'><h3>You are logged out.Login Again</h3></font>");
 			request.getRequestDispatcher("/Login.jsp").include(request, response);
 		}
 		else{
-			deleteFromCart(request, response, out, name);
+			String itemToDelete = request.getParameter("deleteItems");
+			
+			HashMap<String, ArrayList<Item>> itemsInCart = new ShoppingUserDetails().getShoppingCart();
+			ArrayList<Item> list = new ShoppingUserDetails().getItemsInCartList();
+			if(itemsInCart.containsKey(name)) {
+				for(Item item : itemsInCart.get(name)){
+					if(itemToDelete.equalsIgnoreCase(item.getName()+","+item.getCost())){
+						itemsInCart.get(name).remove(item);
+					}
+				}
+			}
+			out.println("<font color='blue'><h3>Item Deleted</h3></font>");
+			request.getRequestDispatcher("/FetchUserSelectedItem").include(request, response);
 		}	
-	}
-
-	private void deleteFromCart(HttpServletRequest request, HttpServletResponse response, PrintWriter out, String name)
-			throws ServletException, IOException {
-		String itemToDelete = request.getParameter("deleteItems");
-		HashMap<String, ArrayList<Item>> itemsInCart = new ShoppingUserDetails().getShoppingCart();
-		if(itemsInCart.containsKey(name)){
-			itemsInCart.get(name).remove(itemToDelete);
-		}
-		out.println("<font color='blue'>Item Deleted</font>");
-		request.getRequestDispatcher("/FetchUserSelectedItem").include(request, response);
 	}
 
 	/**

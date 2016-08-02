@@ -74,10 +74,10 @@ public class SaveToCart extends HttpServlet {
 		}
 	}
 
-	private void AddToHashMap(HttpServletRequest request, HttpServletResponse response, PrintWriter out, String name, Item[] items2) throws ServletException, IOException {
+	private void AddToHashMap(HttpServletRequest request, HttpServletResponse response, PrintWriter out, String name, Item[] arrayOfItemObjects) throws ServletException, IOException {
 		ShoppingUserDetails details = new ShoppingUserDetails();
 		ArrayList<Item> itemsList = details.getItemsInCartList();
-		java.util.Collections.addAll(itemsList, items2);
+		java.util.Collections.addAll(itemsList, arrayOfItemObjects);
 
 		HashMap<String, ArrayList<Item>> shoppingCart = details.getShoppingCart();
 		shoppingCart.put(name, itemsList);

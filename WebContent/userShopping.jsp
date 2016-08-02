@@ -5,8 +5,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<style type="text/css">
+select {
+	width: 70%;
+	padding: 16px 20px;
+	border: none;
+	float: right;
+	border-radius: 4px;
+	background-color: #f1f1f1;
+}
+</style>
 </head>
 <body>
+
+<br><br>
 	<form action="SaveToCart" method="post">
 		<select id="items" multiple="multiple" name="items">
 			<option value="select">Select</option>
@@ -16,11 +28,11 @@
 			<option value="pen,200">Pen,Cost=200</option>
 		</select> <input type="submit" value="Add To Cart">
 	</form>
-
+<br><br>
 	<form action="ShowCart" method="post">
 		<input type="submit" value="Show All Items">
 	</form>
-   
+<br><br>   
 	<form action="Logout.jsp" method="post">
 	   <input type="submit" value="Logout">
 	</form>

@@ -41,7 +41,7 @@ public class FetchUserSelectedItem extends HttpServlet {
 		}
 		else{
 			HashMap<String, ArrayList<Item>> itemsInCart = new ShoppingUserDetails().getShoppingCart();
-			if(itemsInCart.containsKey(name)&&itemsInCart.get(name).isEmpty()){
+			if(itemsInCart.containsKey(name) && itemsInCart.get(name).isEmpty()){
 				out.println("<font color='red'>Select Some item first</font>");
 				request.getRequestDispatcher("/userShopping.jsp").include(request, response);
 			}
@@ -54,13 +54,14 @@ public class FetchUserSelectedItem extends HttpServlet {
 	private void FetchSelectedItems(PrintWriter out, String name, HashMap<String, ArrayList<Item>> itemsInCart) {
 		out.println("<html><body>");
 		out.println("<h3>Your Cart Items</h3>");
-		out.println("<form action='DeleteFromCart'>");
+		out.println("<form action='DeleteFromCart' method='post'>");
 		out.println("<select id='deleteItems' name='deleteItems'>");
 		for(Item item : itemsInCart.get(name)){
-			out.println("<option value='"+item.getName()+"'>"+item.getName()+","+item.getCost()+"</option>");
+			out.println("<option value='"+item.getName()+","+item.getCost()+"'>"+item.getName()+","+item.getCost()+"</option>");
 		}
 		out.println("</select>");
 		out.println("<input type='submit' value='Delete From Cart'>");
+		out.println("</form>");
 		out.println("</body></html>");
 	}
 

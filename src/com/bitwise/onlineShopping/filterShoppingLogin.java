@@ -60,7 +60,7 @@ public class filterShoppingLogin implements Filter {
 	private void checkInDatabase(ServletRequest request, ServletResponse response, FilterChain chain, HashMap<String, String> map, PrintWriter out, HttpSession ssn, String uid, String password) throws IOException, ServletException {
 		if(map.containsKey(uid) && map.containsValue(password)) {
 			ssn.setAttribute("name", uid);
-			out.println("<h3>Welcome "+uid+"</h3>");
+			out.println("<font color='green'><h3>Welcome "+uid+"</h3></font>");
 			chain.doFilter(request, response);
 		}
 		else {
